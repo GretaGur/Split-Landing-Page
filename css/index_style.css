@@ -1,0 +1,178 @@
+:root {
+    --container-bg-color: #333;
+    --left-bg-color: rgba(255, 217, 179, 0.4);
+    --left-button-hover-color: rgba(255, 217, 179, 0.7);
+    --center-bg-color: rgba(224, 224, 209, 0.4);
+    --center-button-hover-color: rgba(224, 224, 209, 0.7);
+    --right-bg-color: rgba(255, 179, 179, 0.4);
+    --right-button-hover-color: rgba(255, 179, 179, 0.7);
+    --hover-width:50%;
+    --other-width: 25%;
+    --speed: 1000ms;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Exo', sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+h1 {
+    font-size: 64px;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+.button {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    padding: 18px;
+    width: 180px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transform: translateX(-50%);
+}
+.split.left .button:hover {
+    background-color: var(--left-button-hover-color);
+    border-color:  var(--left-button-hover-color);
+}
+.split.center .button:hover {
+    background-color: var(--center-button-hover-color);
+    border-color:  var(--center-button-hover-color);
+}
+.split.right .button:hover {
+    background-color: var(--right-button-hover-color);
+    border-color:  var(--right-button-hover-color);
+}
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--container-bg-color);
+}
+.split {
+    position: absolute;
+    width: calc(100% / 3);
+    height: 100%;
+    overflow: hidden;
+}
+.split.left {
+    left: 0;
+    background: url('../img/candys.jpeg') center center no-repeat;
+    background-size: cover;
+}
+.split.center {
+    left: calc(100% / 3);
+    background: url('../img/bear.jpg') center center no-repeat;
+    background-size: cover;
+}
+.split.right {
+    /* left: calc(100% / 3 * 2); */
+    right: 0;
+    background: url('../img/rose.jpg') center center no-repeat;
+    background-size: cover;
+}
+.split.left::before, .split.center::before, .split.right::before {
+    position: absolute;
+    content:  "";
+    width: 100%;
+    height: 100%;
+}
+.split.left::before {
+    background: var(--left-bg-color);
+}
+.split.center::before {
+    background: var(--center-bg-color);
+}
+.split.right::before {
+    background: var(--right-bg-color);
+}
+.split.left, .split.center, .split.right, 
+.split.left::before, .split.center::before, .split.right::before {
+    transition: all var(--speed) ease-in-out;
+}
+.hover-left .left,
+.hover-center .center,
+.hover-right .right {
+    width: var(--hover-width);
+}
+/* .hover-right .right {
+    left: calc(100% - var(--hover-width));
+} */
+/* .hover-left .right,
+.hover-center .right {
+    left: calc(100% - var(--other-width));
+} */
+.hover-left .right, .hover-left .center,
+.hover-center .left, .hover-center .right,
+.hover-right .center, .hover-right .left {
+    width: var(--other-width);
+}
+.hover-left .split.center {
+    left: var(--hover-width);
+    /* left: calc(100% / 2); */
+    /* left: 50%; */
+}
+.hover-center .split.center,
+.hover-right .split.center {
+    left: var(--other-width);
+    /* left: calc(100% / 4); */
+    /* left: 25%; */
+}
+.hover-left .center:before,
+.hover-left .right:before,
+.hover-center .left:before,
+.hover-center .right:before,
+.hover-right .left:before,
+.hover-right .center:before {
+    z-index: 2;
+}
+
+@media(max-width: 767px) {
+    h1 {
+        font-size: 48px;
+    }
+    .button {
+        width: 140px;
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+@media(max-width: 575px) {
+    h1 {
+        font-size: 32px;
+    }
+    .button {
+        width: 110px;
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+@media(max-height: 700px) {
+    .button {
+        top: 60%;
+    }
+}
+@media(max-height: 400px) {
+    h1 {
+        top: 20%;
+    }
+    /* .button {
+        top: 65%;
+    } */
+}
+@media(max-height: 300px) {
+    h1 {
+        top: 5%;
+    }
+}
